@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}Modifica Carta - Amministrazione{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Modifica Carta</h1>
+    <a href="{{ url_for('admin_products') }}" class="btn btn-outline-primary">
+        <i class="fas fa-arrow-left"></i> Torna all'elenco
+    </a>
+</div>
+
+<div class="card" style="background: #2d2d2d; border: 1px solid rgba(255,255,255,0.08);">
+    <div class="card-header bg-primary text-white" style="background: #1d1d1d !important;">
+        <h5 class="mb-0">Dettagli Carta</h5>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label" style="color: #e0e0e0;">Nome Carta</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ product.name }}" required style="background-color: #3d3d3d; border-color: #444; color: #e0e0e0;">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="code" class="form-label" style="color: #e0e0e0;">Codice</label>
+                    <input type="text" class="form-control" id="code" name="code" value="{{ product.code }}" required style="background-color: #3d3d3d; border-color: #444; color: #e0e0e0;">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="price" class="form-label" style="color: #e0e0e0;">Prezzo (€)</label>
+                    <input type="number" step="0.01" min="0" class="form-control" id="price" name="price" value="{{ product.price }}" required style="background-color: #3d3d3d; border-color: #444; color: #e0e0e0;">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="category_id" class="form-label" style="color: #e0e0e0;">Espansione</label>
+                    <select class="form-select" id="category_id" name="category_id" style="background-color: #3d3d3d; border-color: #444; color: #e0e0e0;">
+                        <option value="">-- Seleziona un'espansione --</option>
+                        {% for category in categories %}
+                        <option value="{{ category.id }}" {% if category.id == product.category_id %}selected{% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="image" class="form-label" style="color: #e0e0e0;">Immagine</label>
+                {% if product.image_path %}
+                <div class="mb-2">
+                    <img src="{{ url_for('static', filename=product.image_path) }}" alt="{{ product.name }}" class="img-thumbnail" style="max-height: 150px; background-color: #3d3d3d; border-color: #444;">
+                </div>
+                {% endif %}
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" style="background-color: #3d3d3d; border-color: #444; color: #e0e0e0;">
+                <div class="form-text" style="color: #a0a0a0;">Formati supportati: JPG, PNG, GIF</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="additional_info" class="form-label" style="color: #e0e0e0;">Informazioni Aggiuntive</label>
+                <textarea class="form-control" id="additional_info" name="additional_info" rows="3" style="background-color: #3d3d3d; border-color: #444; color: #e0e0e0;">{{ product.additional_info }}</textarea>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="reset" class="btn btn-secondary">Ripristina</button>
+                <button type="submit" class="btn btn-success">Aggiorna Carta</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

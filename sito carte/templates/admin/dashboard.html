@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard - Amministrazione{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Dashboard Amministrazione</h1>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-primary"><i class="fas fa-home"></i> Torna alla Home</a>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100" style="background: #2d2d2d; border: 1px solid rgba(255,255,255,0.08);">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="color: #e0e0e0;">Carte Pokemon</h5>
+                <p class="display-4" style="color: #e0e0e0;">{{ product_count }}</p>
+                <a href="{{ url_for('admin_products') }}" class="btn btn-primary">Gestisci Carte</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card h-100" style="background: #2d2d2d; border: 1px solid rgba(255,255,255,0.08);">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="color: #e0e0e0;">Espansioni</h5>
+                <p class="display-4" style="color: #e0e0e0;">{{ category_count }}</p>
+                <a href="{{ url_for('admin_categories') }}" class="btn btn-primary">Gestisci Espansioni</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card" style="background: #2d2d2d; border: 1px solid rgba(255,255,255,0.08);">
+            <div class="card-header bg-primary text-white" style="background: #1d1d1d !important;">
+                <h5 class="mb-0">Azioni Rapide</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ url_for('admin_add_product') }}" class="btn btn-success w-100">
+                            <i class="fas fa-plus-circle me-2"></i>Aggiungi Nuova Carta
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ url_for('admin_add_category') }}" class="btn btn-success w-100">
+                            <i class="fas fa-plus-circle me-2"></i>Aggiungi Nuova Espansione
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

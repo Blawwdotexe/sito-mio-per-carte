@@ -1,0 +1,219 @@
+/* Modern styles for Pokemon Cards website */
+
+/* General styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+/* Card styling */
+.product-card {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: none;
+    height: 100%;
+    background: #2d2d2d;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    z-index: 1050;
+    background-color: #2d2d2d !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.dropdown-item {
+    color: #e0e0e0 !important;
+}
+
+.dropdown-item:hover {
+    background-color: #3d3d3d !important;
+    color: #ffffff !important;
+}
+
+.product-card img {
+    transition: transform 0.6s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Button styling */
+.btn {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-weight: 500;
+    position: relative;
+}
+
+.btn-primary {
+    background-color: #e53935;
+    border-color: #e53935;
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(229, 57, 53, 0.3);
+}
+
+.btn-outline-primary {
+    color: #e53935;
+    border-color: #e53935;
+}
+
+.btn-outline-primary:hover {
+    background-color: #e53935;
+    border-color: #e53935;
+    transform: translateY(-2px);
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: rgba(29, 29, 29, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #e53935;
+    letter-spacing: 0.5px;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #2d3436;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #e53935;
+}
+
+/* Footer styling */
+.footer {
+    margin-top: 80px;
+    padding: 40px 0;
+    background-color: #1d1d1d;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Image preview functionality */
+.image-icon {
+    cursor: pointer;
+    margin-left: 10px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.image-icon:hover {
+    transform: scale(1.1);
+    color: #e53935;
+}
+
+.card-thumbnail {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background-color: #252525;
+    padding: 10px;
+    position: relative;
+    max-width: 100%;
+    max-height: 325px;
+}
+
+.card-thumbnail:hover {
+    transform: scale(1.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+/* Modal for enlarged image */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    animation: zoom 0.3s;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #e53935;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)}
+    to {transform: scale(1)}
+}
+
+/* Legacy image preview for hover (will be removed) */
+.image-preview {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 270px;
+    z-index: 1001;
+    background: rgba(45, 45, 45, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0;
+    transform: translate(calc(100% + 20px), -50%);
+    pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: none !important;
+}
+
+.image-preview.show {
+    opacity: 1;
+    pointer-events: auto;
+}
