@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}Carte Pokemon in Vendita{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="mb-4">Carte Pokemon in Vendita</h1>
+        
+        {% if categories %}
+        <div class="card mb-4 product-card">
+            <div class="card-header" style="background-color: #e53935; color: white;">
+                <h5 class="mb-0">Espansioni Disponibili</h5>
+            </div>
+            <div class="card-body" style="background-color: #2d2d2d; color: #e0e0e0;">
+                <div class="row">
+                    {% for category in categories %}
+                    <div class="col-md-3 mb-3">
+                        <a href="{{ url_for('category', category_id=category.id) }}" class="btn btn-outline-primary w-100">
+                            {{ category.name }}
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Tutte le Carte</h2>
+</div>
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 product-card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ product.name }}
+                </h5>
+                {% if product.image_path %}
+                <img src="{{ url_for('static', filename=product.image_path) }}" class="card-thumbnail" alt="{{ product.name }}" data-product-id="{{ product.id }}">
+                {% endif %}
+                <div class="image-preview" id="image-preview-{{ product.id }}">
+                    {% if product.image_path %}
+                    <img src="{{ url_for('static', filename=product.image_path) }}" class="img-fluid mb-2" alt="{{ product.name }}">
+                    {% endif %}
+                </div>
+                <p class="card-text"><strong>Codice:</strong> {{ product.code }}</p>
+                <p class="card-text"><strong>Prezzo:</strong> €{{ "%.2f"|format(product.price) }}</p>
+                {% if product.category_name %}
+                <p class="card-text"><strong>Espansione:</strong> {{ product.category_name }}</p>
+                {% endif %}
+                {% if product.additional_info %}
+                <p class="card-text"><strong>Info aggiuntive:</strong> {{ product.additional_info }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-warning">
+            Nessuna carta disponibile al momento.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- The modal functionality is now handled in layout.html -->
+{% endblock %}

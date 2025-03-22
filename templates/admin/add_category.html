@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}Aggiungi Espansione - Amministrazione{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Aggiungi Nuova Espansione</h1>
+    <a href="{{ url_for('admin_categories') }}" class="btn btn-outline-primary">
+        <i class="fas fa-arrow-left"></i> Torna all'elenco
+    </a>
+</div>
+
+<div class="card" style="background: #2d2d2d; border: 1px solid rgba(255,255,255,0.08);">
+    <div class="card-header bg-primary text-white" style="background: #1d1d1d !important;">
+        <h5 class="mb-0">Dettagli Espansione</h5>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label" style="color: #e0e0e0;">Nome Espansione</label>
+                <input type="text" class="form-control" id="name" name="name" required style="background-color: #3d3d3d; border-color: #444; color: #e0e0e0;">
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label" style="color: #e0e0e0;">Descrizione</label>
+                <textarea class="form-control" id="description" name="description" rows="3" style="background-color: #3d3d3d; border-color: #444; color: #e0e0e0;"></textarea>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="reset" class="btn btn-secondary">Cancella</button>
+                <button type="submit" class="btn btn-success">Salva Espansione</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
